@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Portfolio - จิราพัชร สามารถ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-primary: #38bdf8; /* Sky Blue */
+            --accent-glow: rgba(56, 189, 248, 0.5);
+            --accent-secondary: #818cf8; /* Indigo */
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-hover-bg: rgba(56, 189, 248, 0.1);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Prompt', 'Kanit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- BACKGROUND ANIMATION --- */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at top left, #1e1b4b, transparent 40%),
+                        radial-gradient(circle at bottom right, #0c4a6e, transparent 40%);
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite alternate;
+        }
+
+        .shape-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--accent-secondary), transparent);
+            animation-duration: 25s;
+        }
+
+        .shape-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, var(--accent-primary), transparent);
+            animation-duration: 30s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(50px, 50px) rotate(10deg); }
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            min-width: 0; /* Prevent flex overflow */
+        }
+
+        /* --- GLASS CARD STYLE --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* --- SIDEBAR PROFILE --- */
+        .profile-card {
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            padding: 4px;
+            object-fit: cover;
+            background: var(--bg-secondary);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-card:hover .profile-image {
+            transform: scale(1.05) rotate(3deg);
+            border-color: var(--accent-primary);
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 18px;
+            height: 18px;
+            background-color: #22c55e;
+            border: 3px solid var(--bg-secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .profile-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            background: linear-gradient(120deg, #fff, var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-position {
+            color: var(--accent-primary);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 20px;
+        }
+
+        .profile-bio {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* Contact Links with Hover Effects */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .contact-link:hover {
+            background: var(--accent-primary);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+        }
+
+        .stat-item h3 {
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .stat-item p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- MAIN CONTENT SECTIONS --- */
+        
+        /* Resume / Greeting */
+        .greeting {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .typing-container {
+            font-size: 18px;
+            color: var(--accent-primary);
+            font-family: monospace;
+            margin-bottom: 30px;
+            min-height: 27px;
+        }
+
+        .typing-cursor {
+            border-right: 2px solid var(--accent-primary);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .skill-icon {
+            font-size: 24px;
+            color: var(--accent-primary);
+        }
+
+        /* --- SECTION HEADER --- */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .section-header i { color: var(--accent-secondary); }
+
+        /* --- EDUCATION TIMELINE STYLE --- */
+        .education-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 18px 20px;
+            border-radius: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(5px);
+            background: rgba(56, 189, 248, 0.05);
+            border-color: var(--accent-primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .education-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .education-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .education-details p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* --- PROJECTS GRID --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none; /* For the whole card link */
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .project-card:hover::after { opacity: 1; }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--accent-primary);
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tech-tag {
+            font-size: 11px;
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: var(--accent-primary);
+            border: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .view-project {
+            color: var(--accent-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            transition: gap 0.3s;
+        }
+
+        .project-card:hover .view-project {
+            gap: 10px;
+            color: var(--accent-primary);
+        }
+
+        /* --- CONTRIBUTION GRAPH --- */
+        .contribution-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .graph-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(14px, 1fr));
+            gap: 4px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+
+        .graph-day {
+            aspect-ratio: 1/1;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .graph-day:hover {
+            transform: scale(1.4);
+            z-index: 10;
+            border: 1px solid #fff;
+        }
+
+        .level-0 { background: rgba(255, 255, 255, 0.05); }
+        .level-1 { background: rgba(56, 189, 248, 0.3); }
+        .level-2 { background: rgba(56, 189, 248, 0.5); }
+        .level-3 { background: rgba(56, 189, 248, 0.7); }
+        .level-4 { background: #38bdf8; box-shadow: 0 0 10px var(--accent-primary); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-secondary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .container { flex-direction: column; padding: 20px; }
+            .sidebar { width: 100%; position: static; }
+            .profile-card { display: flex; flex-direction: column; align-items: center; }
+            .profile-image-container { width: 120px; height: 120px; }
+        }
+
+        @media (max-width: 480px) {
+            .stats { grid-template-columns: 1fr; }
+            .greeting { font-size: 28px; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+    </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="glass-card profile-card">
+                <div class="profile-image-container">
+                    <img src="109.jpg" alt="Profile" class="profile-image">
+                    <div class="status-badge"></div>
+                </div>
+                <h1 class="profile-name">จิราพัชร สามารถ</h1>
+                <h1 class="profile-name">68040233109</h1>
+                <p class="profile-position">IT Student & Web Dev</p>
+                <p class="profile-bio">ชอบสร้างเว็บไซต์ที่สวยงามและใช้งานได้จริง หลงใหลในการเรียนรู้เทคโนโลยีใหม่ๆ 🚀</p>
+                
+                <div class="contact-links">
+                    <a href="#" class="contact-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" class="contact-link" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="contact-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>คณะ</h3>
+                        <p>วิทยาศาสตร์</p>
+                     </div>
+                    <div class="stat-item">
+                        <h3>สถานศึกษา</h3>
+                         <p>มหาวิทยาลัยราชภัฏอุดรธานี</p>
+                    </div>
+                </div>
+                <div class="stats">
+                     <div class="stat-item">
+                        <h3>สถานะ</h3>
+                         <p>นักศึกษาปี2 (เทียบโอน)</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="glass-card">
+                <div class="greeting">สวัสดีค่ะ! <br>ฉันชื่อ<span style="color: var(--accent-primary);">ปราย</span> 👋</div>
+                <div class="typing-container">
+                    <span id="typing-text"></span><span class="typing-cursor"></span>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-code skill-icon"></i>
+                        <div>
+                            <strong>Frontend Dev</strong><br>
+                            <span style="font-size: 12px; color: var(--text-secondary);">React, Vue, Tailwind</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-pen-nib skill-icon"></i>
+                        <div>
+                            <strong>UI/UX Design</strong><br>
+                            <span style="font-size: 12px; color: var(--text-secondary);">Figma, Prototyping</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-bolt skill-icon"></i>
+                        <div>
+                            <strong>Performance</strong><br>
+                            <span style="font-size: 12px; color: var(--text-secondary);">SEO, Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- เพิ่มส่วนประวัติการศึกษาตรงนี้ -->
+            <div class="glass-card">
+                <div class="section-header">
+                    <i class="fas fa-graduation-cap"></i> ประวัติการศึกษา (Education)
+                </div>
+                <div class="education-list">
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-university"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับปริญญาตรี</h4>
+                            <p>คณะวิทยาศาสตร์ สาขาวิชาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏอุดรธานี (พ.ศ. 2568–ปัจจุบัน)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-school"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.)</h4>
+                            <p>วิทยาลัยเทคนิคอุดรธานี (ปวส.1–ปวส.2)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-school"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับประกาศนียบัตรวิชาชีพ (ปวช.)</h4>
+                            <p>วิทยาลัยเทคนิคอุดรธานี (ปวช.1–ปวช.3)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-book"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับมัธยมศึกษาตอนต้น</h4>
+                            <p>โรงเรียนเทศบาล 2 มุขมนตรี (ม.1–ม.3)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-child"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับประถมศึกษา</h4>
+                            <p>โรงเรียนเทศบาล 2 มุขมนตรี (ป.1–ป.6)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="section-header">
+                    <i class="fas fa-cube"></i> ผลงานที่น่าสนใจ
+                </div>
+                <div class="projects-grid" id="projects-container">
+                    <a href="#" class="project-card">
+                        <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p class="project-desc">ระบบร้านค้าออนไลน์พร้อมตะกร้าสินค้าและการชำระเงิน</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                        </div>
+                        <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
+                    </a>
+
+                    <a href="#" class="project-card">
+                        <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h3 class="project-title">Analytics Dashboard</h3>
+                        <p class="project-desc">แดชบอร์ดแสดงข้อมูลสถิติแบบ Real-time data visualization</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Chart.js</span>
+                        </div>
+                        <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
+                    </a>
+
+                    <a href="#" class="project-card">
+                        <div class="project-icon"><i class="fas fa-comments"></i></div>
+                        <h3 class="project-title">Chat App</h3>
+                        <p class="project-desc">แอปพลิเคชันแชทโต้ตอบทันทีผ่าน WebSocket</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">Express</span>
+                        </div>
+                        <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                     <a href="#" class="project-card">
+                        <div class="project-icon"><i class="fas fa-music"></i></div>
+                        <h3 class="project-title">Music Player</h3>
+                        <p class="project-desc">เว็บแอปฟังเพลง เชื่อมต่อ Spotify API</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">API</span>
+                        </div>
+                        <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="section-header">
+                    <i class="fas fa-code-branch"></i> ประวัติการเขียนโค้ด (2025-2026)
+                </div>
+                <div class="contribution-header">
+                    <span>Active Days</span>
+                    <span id="contribution-count" style="color: var(--accent-primary); font-weight: bold;">0</span>
+                </div>
+                <div class="graph-container" id="contribution-graph"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ===== TYPING EFFECT =====
+        const textToType = "กำลังศึกษาและพัฒนาทักษะด้าน Web Development 💻";
+        const typeEl = document.getElementById('typing-text');
+        let typeIdx = 0;
+
+        function typeWriter() {
+            if (typeIdx < textToType.length) {
+                typeEl.textContent += textToType.charAt(typeIdx);
+                typeIdx++;
+                setTimeout(typeWriter, 80);
+            }
+        }
+        setTimeout(typeWriter, 500);
+
+        // ===== CONTRIBUTION GRAPH GEN =====
+        const graphContainer = document.getElementById('contribution-graph');
+        const countDisplay = document.getElementById('contribution-count');
+        
+        function generateGraph() {
+            const days = 160; 
+            let totalActivity = 0;
+
+            for(let i=0; i<days; i++) {
+                const day = document.createElement('div');
+                day.className = 'graph-day';
+                
+                const rand = Math.random();
+                let level = 0;
+                if(rand > 0.85) level = 4;
+                else if(rand > 0.7) level = 3;
+                else if(rand > 0.5) level = 2;
+                else if(rand > 0.2) level = 1;
+
+                day.classList.add(`level-${level}`);
+                if(level > 0) totalActivity++;
+                
+                day.title = `${level} contributions`;
+                
+                graphContainer.appendChild(day);
+            }
+            countDisplay.innerText = `${totalActivity} Days`;
+        }
+        generateGraph();
+
+        // ===== CARD HOVER MOUSE EFFECT =====
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.onmousemove = e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            }
+        });
+    </script>
+</body>
+</html>
