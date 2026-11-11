@@ -106,7 +106,7 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
-            min-width: 0; /* Prevent flex overflow */
+            min-width: 0;
         }
 
         /* --- GLASS CARD STYLE --- */
@@ -205,7 +205,7 @@
             margin-bottom: 25px;
         }
 
-        /* Contact Links with Hover Effects */
+        /* Contact Links */
         .contact-links {
             display: flex;
             justify-content: center;
@@ -255,8 +255,6 @@
         }
 
         /* --- MAIN CONTENT SECTIONS --- */
-        
-        /* Resume / Greeting */
         .greeting {
             font-size: 36px;
             font-weight: 700;
@@ -306,7 +304,6 @@
             color: var(--accent-primary);
         }
 
-        /* --- SECTION HEADER --- */
         .section-header {
             display: flex;
             align-items: center;
@@ -319,7 +316,7 @@
 
         .section-header i { color: var(--accent-secondary); }
 
-        /* --- EDUCATION TIMELINE STYLE --- */
+        /* --- EDUCATION TIMELINE --- */
         .education-list {
             display: flex;
             flex-direction: column;
@@ -370,6 +367,58 @@
             color: var(--text-secondary);
         }
 
+        /* --- CONTACT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card-item:hover {
+            transform: translateY(-5px);
+            background: rgba(56, 189, 248, 0.05);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .contact-card-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+        }
+
+        .contact-card-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+
         /* --- PROJECTS GRID --- */
         .projects-grid {
             display: grid;
@@ -388,7 +437,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            text-decoration: none; /* For the whole card link */
+            text-decoration: none;
         }
 
         .project-card::after {
@@ -543,14 +592,14 @@
                     <div class="status-badge"></div>
                 </div>
                 <h1 class="profile-name">จิราพัชร สามารถ</h1>
-                <h1 class="profile-name">68040233109</h1>
+                <h1 class="profile-name" style="font-size: 16px; font-weight: 500; color: var(--text-secondary);">68040233109</h1>
                 <p class="profile-position">IT Student & Web Dev</p>
                 <p class="profile-bio">ชอบสร้างเว็บไซต์ที่สวยงามและใช้งานได้จริง หลงใหลในการเรียนรู้เทคโนโลยีใหม่ๆ 🚀</p>
                 
+                <!-- อัปเดตลิงก์ติดต่อตรง Sidebar ด้านซ้าย -->
                 <div class="contact-links">
-                    <a href="#" class="contact-link" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" class="contact-link" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="#" class="contact-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/jitapat-68040233109" target="_blank" class="contact-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:jirapat.samat1807@gmail.com" class="contact-link" title="Email"><i class="fas fa-envelope"></i></a>
                 </div>
 
                 <div class="stats">
@@ -563,10 +612,10 @@
                          <p>มหาวิทยาลัยราชภัฏอุดรธานี</p>
                     </div>
                 </div>
-                <div class="stats">
-                     <div class="stat-item">
+                <div class="stats" style="margin-top: 15px;">
+                     <div class="stat-item" style="grid-column: span 2;">
                         <h3>สถานะ</h3>
-                         <p>นักศึกษาปี2 (เทียบโอน)</p>
+                         <p>นักศึกษาปี 1 (เทียบโอน)</p>
                     </div>
                 </div>
             </div>
@@ -604,7 +653,7 @@
                 </div>
             </div>
 
-            <!-- เพิ่มส่วนประวัติการศึกษาตรงนี้ -->
+            <!-- ส่วนประวัติการศึกษา (Education) -->
             <div class="glass-card">
                 <div class="section-header">
                     <i class="fas fa-graduation-cap"></i> ประวัติการศึกษา (Education)
@@ -645,6 +694,29 @@
                             <p>โรงเรียนเทศบาล 2 มุขมนตรี (ป.1–ป.6)</p>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- ส่วนช่องทางการติดต่อ (Contact) ที่เพิ่มใหม่ -->
+            <div class="glass-card">
+                <div class="section-header">
+                    <i class="fas fa-address-book"></i> ช่องทางการติดต่อ (Contact)
+                </div>
+                <div class="contact-grid">
+                    <a href="mailto:jirapat.samat1807@gmail.com" class="contact-card-item">
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-card-info">
+                            <h4>Email</h4>
+                            <p>jirapat.samat1807@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/jitapat-68040233109" target="_blank" class="contact-card-item">
+                        <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+                        <div class="contact-card-info">
+                            <h4>GitHub Profile</h4>
+                            <p>github.com/jitapat-68040233109</p>
+                        </div>
+                    </a>
                 </div>
             </div>
 
