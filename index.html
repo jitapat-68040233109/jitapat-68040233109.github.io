@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Portfolio - จิราพัชร สามารถ</title>
+    <title>Portfolio - จิราพัชร สามารถ (ปราย)</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -94,7 +94,7 @@
         }
 
         .sidebar {
-            width: 300px;
+            width: 320px;
             flex-shrink: 0;
             position: sticky;
             top: 40px;
@@ -190,7 +190,7 @@
 
         .profile-position {
             color: var(--accent-primary);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             margin-bottom: 15px;
             display: inline-block;
@@ -201,8 +201,26 @@
 
         .profile-bio {
             color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 25px;
+            font-size: 13.5px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .info-list {
+            text-align: left;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .info-list strong {
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
         /* Contact Links */
@@ -210,7 +228,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .contact-link {
@@ -239,33 +257,37 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             border-top: 1px solid var(--glass-border);
-            padding-top: 20px;
+            padding-top: 18px;
         }
 
         .stat-item h3 {
-            font-size: 16px;
+            font-size: 14px;
             color: var(--text-primary);
         }
 
         .stat-item p {
-            font-size: 15px;
+            font-size: 13px;
             color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         /* --- MAIN CONTENT SECTIONS --- */
         .greeting {
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 700;
             margin-bottom: 10px;
         }
 
+        .about-summary {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
         .typing-container {
-            font-size: 18px;
+            font-size: 17px;
             color: var(--accent-primary);
             font-family: monospace;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             min-height: 27px;
         }
 
@@ -278,7 +300,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
         }
 
@@ -302,6 +324,7 @@
         .skill-icon {
             font-size: 24px;
             color: var(--accent-primary);
+            flex-shrink: 0;
         }
 
         .section-header {
@@ -316,14 +339,14 @@
 
         .section-header i { color: var(--accent-secondary); }
 
-        /* --- EDUCATION TIMELINE --- */
-        .education-list {
+        /* --- TIMELINE LISTS (EXPERIENCE & EDUCATION) --- */
+        .timeline-list {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .education-item {
+        .timeline-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--glass-border);
             padding: 18px 20px;
@@ -334,16 +357,16 @@
             transition: all 0.3s ease;
         }
 
-        .education-item:hover {
+        .timeline-item:hover {
             transform: translateX(5px);
             background: rgba(56, 189, 248, 0.05);
             border-color: var(--accent-primary);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .education-icon {
-            width: 40px;
-            height: 40px;
+        .timeline-icon {
+            width: 42px;
+            height: 42px;
             border-radius: 10px;
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
             display: flex;
@@ -355,22 +378,90 @@
             margin-top: 2px;
         }
 
-        .education-details h4 {
+        .timeline-details h4 {
             font-size: 16px;
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 4px;
         }
 
-        .education-details p {
+        .timeline-details .role-meta {
+            font-size: 13.5px;
+            color: var(--accent-primary);
+            margin-bottom: 6px;
+        }
+
+        .timeline-details p {
             font-size: 14px;
             color: var(--text-secondary);
+        }
+
+        .timeline-details ul {
+            margin-top: 6px;
+            padding-left: 18px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+        }
+
+        .timeline-details ul li {
+            margin-bottom: 4px;
+        }
+
+        /* --- QUALIFICATION BULLETS & LANGUAGES --- */
+        .qual-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .qual-list li {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .qual-list li i {
+            color: var(--accent-primary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 18px;
+        }
+
+        .lang-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lang-level {
+            font-size: 13px;
+            color: var(--accent-primary);
+            font-weight: 500;
         }
 
         /* --- CONTACT SECTION --- */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
 
@@ -422,7 +513,7 @@
         /* --- PROJECTS GRID --- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 20px;
         }
 
@@ -543,7 +634,7 @@
             background: rgba(255, 255, 255, 0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        
+
         .graph-day:hover {
             transform: scale(1.4);
             z-index: 10;
@@ -568,6 +659,7 @@
             .sidebar { width: 100%; position: static; }
             .profile-card { display: flex; flex-direction: column; align-items: center; }
             .profile-image-container { width: 120px; height: 120px; }
+            .info-list { width: 100%; }
         }
 
         @media (max-width: 480px) {
@@ -588,66 +680,137 @@
         <aside class="sidebar">
             <div class="glass-card profile-card">
                 <div class="profile-image-container">
-                    <img src="109.jpg" alt="Profile" class="profile-image">
+                    <img src="109.jpg" alt="จิราพัชร สามารถ" class="profile-image">
                     <div class="status-badge"></div>
                 </div>
-                <h1 class="profile-name">จิราพัชร สามารถ</h1>
-                <h1 class="profile-name" style="font-size: 16px; font-weight: 500; color: var(--text-secondary);">68040233109</h1>
-                <p class="profile-position">IT Student & Web Dev</p>
-                <p class="profile-bio">ชอบสร้างเว็บไซต์ที่สวยงามและใช้งานได้จริง หลงใหลในการเรียนรู้เทคโนโลยีใหม่ๆ 🚀</p>
-                
+                <h1 class="profile-name">นางสาวจิราพัชร สามารถ</h1>
+                <p style="font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 8px;">รหัสนักศึกษา 68040233109</p>
+                <p class="profile-position">นักศึกษาชั้นปีที่ 2 (เทียบโอน) • IT</p>
+                <p class="profile-bio">นักศึกษาชั้นปีที่ 2 เทียบโอน สาขาวิชาเทคโนโลยีสารสนเทศ มีทักษะด้านการออกแบบส่วนติดต่อผู้ใช้ด้วย Figma และเข้าใจหลักการออกแบบที่เน้นผู้ใช้งานเป็นศูนย์กลาง พร้อมเรียนรู้และสร้างสรรค์ผลงานที่ตอบโจทย์ผู้ใช้งานจริง</p>
+
+                <div class="info-list">
+                    <div><strong>ชื่อเล่น:</strong> ปราย</div>
+                    <div><strong>วัน-เดือน-ปีเกิด:</strong> 18 กรกฎาคม 2547</div>
+                    <div><strong>อายุ:</strong> 22 ปี</div>
+                    <div><strong>สัญชาติ / เชื้อชาติ:</strong> ไทย / ไทย</div>
+                </div>
+
                 <div class="contact-links">
                     <a href="https://github.com/jitapat-68040233109" target="_blank" class="contact-link" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="mailto:jirapat.samat1807@gmail.com" class="contact-link" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:jirapat18747@gmail.com" class="contact-link" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:0635801391" class="contact-link" title="โทรศัพท์"><i class="fas fa-phone"></i></a>
                 </div>
 
                 <div class="stats">
                     <div class="stat-item">
                         <h3>คณะ</h3>
                         <p>วิทยาศาสตร์</p>
-                     </div>
+                    </div>
                     <div class="stat-item">
                         <h3>สถานศึกษา</h3>
-                         <p>มหาวิทยาลัยราชภัฏอุดรธานี</p>
+                        <p>มรภ.อุดรธานี</p>
                     </div>
                 </div>
                 <div class="stats" style="margin-top: 15px;">
-                     <div class="stat-item" style="grid-column: span 2;">
-                        <h3>สถานะ</h3>
-                         <p>นักศึกษาปี 2 (เทียบโอน)</p>
+                    <div class="stat-item" style="grid-column: span 2;">
+                        <h3>สาขาวิชา</h3>
+                        <p>เทคโนโลยีสารสนเทศ (ปี 2 เทียบโอน)</p>
                     </div>
                 </div>
             </div>
         </aside>
 
         <main class="main-content">
+            <!-- แนะนำตัวและเครื่องมือ/โปรแกรม -->
             <div class="glass-card">
-                <div class="greeting">สวัสดีค่ะ! <br>ฉันชื่อ<span style="color: var(--accent-primary);">ปราย</span> 👋</div>
+                <div class="greeting">สวัสดีค่ะ! <br>ฉันชื่อ<span style="color: var(--accent-primary);">ปราย</span> (จิราพัชร สามารถ) 👋</div>
+                <p class="about-summary">นักศึกษาชั้นปีที่ 2 เทียบโอน สาขาวิชาเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์ มหาวิทยาลัยราชภัฏอุดรธานี มีความสนใจด้าน UI/UX Design และการพัฒนาเว็บไซต์ พร้อมทำงานและเรียนรู้งานใหม่อย่างเต็มที่</p>
                 <div class="typing-container">
                     <span id="typing-text"></span><span class="typing-cursor"></span>
                 </div>
-                
+
+                <div class="section-header" style="margin-bottom: 14px; font-size: 18px;">
+                    <i class="fas fa-toolbox"></i> เครื่องมือและโปรแกรม
+                </div>
                 <div class="skills-grid">
-                    <div class="skill-item">
-                        <i class="fas fa-code skill-icon"></i>
-                        <div>
-                            <strong>Frontend Dev</strong><br>
-                            <span style="font-size: 12px; color: var(--text-secondary);">React, Vue, Tailwind</span>
-                        </div>
-                    </div>
                     <div class="skill-item">
                         <i class="fas fa-pen-nib skill-icon"></i>
                         <div>
-                            <strong>UI/UX Design</strong><br>
-                            <span style="font-size: 12px; color: var(--text-secondary);">Figma, Prototyping</span>
+                            <strong>ออกแบบ</strong><br>
+                            <span style="font-size: 12.5px; color: var(--text-secondary);">FIGMA, CANVA</span>
                         </div>
                     </div>
                     <div class="skill-item">
-                        <i class="fas fa-bolt skill-icon"></i>
+                        <i class="fas fa-code skill-icon"></i>
                         <div>
-                            <strong>Performance</strong><br>
-                            <span style="font-size: 12px; color: var(--text-secondary);">SEO, Optimization</span>
+                            <strong>พัฒนาเว็บ</strong><br>
+                            <span style="font-size: 12.5px; color: var(--text-secondary);">HTML, CSS, VS CODE, GITHUB</span>
                         </div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-file-word skill-icon"></i>
+                        <div>
+                            <strong>เอกสาร</strong><br>
+                            <span style="font-size: 12.5px; color: var(--text-secondary);">MICROSOFT WORD, EXCEL, POWERPOINT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนประสบการณ์ฝึกงาน (Internship Experience) -->
+            <div class="glass-card">
+                <div class="section-header">
+                    <i class="fas fa-briefcase"></i> ประสบการณ์ฝึกงาน
+                </div>
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-building"></i></div>
+                        <div class="timeline-details">
+                            <h4>องค์การบริหารส่วนตำบลเชียงพิณ</h4>
+                            <div class="role-meta">พ.ศ. 2565 • แผนก: กองช่าง</div>
+                            <ul>
+                                <li>งานเอกสารในสำนักงานและงานลงพื้นที่</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-car"></i></div>
+                        <div class="timeline-details">
+                            <h4>โรงเรียนสอนขับรถทวีทรัพย์ไดร์ฟเวอร์</h4>
+                            <div class="role-meta">พ.ศ. 2566 • ตำแหน่ง: แอดมินเพจ / แอดมินแชท</div>
+                            <ul>
+                                <li>ตอบข้อความลูกค้า บริการลูกค้าตั้งแต่เริ่มสนใจจนจบหลักสูตร</li>
+                                <li>อัปเดตคอนเทนต์: โพสต์รูปภาพ โปรโมชั่น หรือข่าวสารตามตารางที่วางไว้</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนทักษะและคุณสมบัติ & ภาษา -->
+            <div class="glass-card">
+                <div class="section-header">
+                    <i class="fas fa-star"></i> ทักษะและคุณสมบัติ
+                </div>
+                <ul class="qual-list">
+                    <li><i class="fas fa-check-circle"></i><span>ออกแบบส่วนติดต่อผู้ใช้ (UI/UX) และต้นแบบงานด้วย Figma</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>จัดทำคอนเทนต์และกราฟิกประชาสัมพันธ์ผ่านโซเชียลมีเดีย</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>สื่อสาร ดูแล และประสานงานกับลูกค้า/ผู้ใช้งานได้อย่างคล่องแคล่ว</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>ใช้งานโปรแกรมคอมพิวเตอร์พื้นฐานและจัดการงานเอกสารได้เป็นระบบ</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>มีมนุษยสัมพันธ์ดี ทำงานร่วมกับทีมได้ราบรื่น และพร้อมเรียนรู้งานใหม่เสมอ</span></li>
+                </ul>
+
+                <div class="section-header" style="margin-bottom: 12px; font-size: 18px;">
+                    <i class="fas fa-language"></i> ภาษา
+                </div>
+                <div class="lang-grid">
+                    <div class="lang-box">
+                        <strong>ภาษาไทย</strong>
+                        <span class="lang-level">ดีเยี่ยม</span>
+                    </div>
+                    <div class="lang-box">
+                        <strong>ภาษาอังกฤษ</strong>
+                        <span class="lang-level">ปานกลาง</span>
                     </div>
                 </div>
             </div>
@@ -655,92 +818,69 @@
             <!-- ส่วนประวัติการศึกษา (Education) -->
             <div class="glass-card">
                 <div class="section-header">
-                    <i class="fas fa-graduation-cap"></i> ประวัติการศึกษา (Education)
+                    <i class="fas fa-graduation-cap"></i> ประวัติการศึกษา
                 </div>
-                <div class="education-list">
-                    <div class="education-item">
-                        <div class="education-icon"><i class="fas fa-university"></i></div>
-                        <div class="education-details">
-                            <h4>ระดับปริญญาตรี</h4>
-                            <p>คณะวิทยาศาสตร์ สาขาวิชาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏอุดรธานี (พ.ศ. 2568–ปัจจุบัน)</p>
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-university"></i></div>
+                        <div class="timeline-details">
+                            <h4>มหาวิทยาลัยราชภัฏอุดรธานี</h4>
+                            <p>ระดับปริญญาตรี • สาขาวิชา: เทคโนโลยีสารสนเทศ (2568–ปัจจุบัน)</p>
                         </div>
                     </div>
-                    <div class="education-item">
-                        <div class="education-icon"><i class="fas fa-school"></i></div>
-                        <div class="education-details">
-                            <h4>ระดับประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.)</h4>
-                            <p>วิทยาลัยเทคนิคอุดรธานี (ปวส.1–ปวส.2)</p>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-school"></i></div>
+                        <div class="timeline-details">
+                            <h4>วิทยาลัยเทคนิคอุดรธานี</h4>
+                            <p>ระดับประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.) • สาขาวิชา: เทคโนโลยีสารสนเทศ (2566–2568)</p>
                         </div>
                     </div>
-                    <div class="education-item">
-                        <div class="education-icon"><i class="fas fa-school"></i></div>
-                        <div class="education-details">
-                            <h4>ระดับประกาศนียบัตรวิชาชีพ (ปวช.)</h4>
-                            <p>วิทยาลัยเทคนิคอุดรธานี (ปวช.1–ปวช.3)</p>
-                        </div>
-                    </div>
-                    <div class="education-item">
-                        <div class="education-icon"><i class="fas fa-book"></i></div>
-                        <div class="education-details">
-                            <h4>ระดับมัธยมศึกษาตอนต้น</h4>
-                            <p>โรงเรียนเทศบาล 2 มุขมนตรี (ม.1–ม.3)</p>
-                        </div>
-                    </div>
-                    <div class="education-item">
-                        <div class="education-icon"><i class="fas fa-child"></i></div>
-                        <div class="education-details">
-                            <h4>ระดับประถมศึกษา</h4>
-                            <p>โรงเรียนเทศบาล 2 มุขมนตรี (ป.1–ป.6)</p>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-school"></i></div>
+                        <div class="timeline-details">
+                            <h4>วิทยาลัยเทคนิคอุดรธานี</h4>
+                            <p>ระดับประกาศนียบัตรวิชาชีพ (ปวช.) • สาขาวิชา: เทคโนโลยีสารสนเทศ (2563–2566)</p>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- ส่วนผลงานที่น่าสนใจ -->
             <div class="glass-card">
                 <div class="section-header">
                     <i class="fas fa-cube"></i> ผลงานที่น่าสนใจ
                 </div>
                 <div class="projects-grid" id="projects-container">
                     <a href="#" class="project-card">
-                        <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
-                        <h3 class="project-title">E-Commerce Platform</h3>
-                        <p class="project-desc">ระบบร้านค้าออนไลน์พร้อมตะกร้าสินค้าและการชำระเงิน</p>
+                        <div class="project-icon"><i class="fas fa-pen-ruler"></i></div>
+                        <h3 class="project-title">UI/UX Wireframe & Prototype</h3>
+                        <p class="project-desc">ออกแบบส่วนติดต่อผู้ใช้และต้นแบบหน้าจอตามหลัก User-Centered Design</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Canva</span>
                         </div>
                         <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
                     </a>
 
                     <a href="#" class="project-card">
-                        <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
-                        <h3 class="project-title">Analytics Dashboard</h3>
-                        <p class="project-desc">แดชบอร์ดแสดงข้อมูลสถิติแบบ Real-time data visualization</p>
+                        <div class="project-icon"><i class="fas fa-bullhorn"></i></div>
+                        <h3 class="project-title">Social Media Content</h3>
+                        <p class="project-desc">ออกแบบภาพโปรโมชั่น ข่าวสาร และบริหารจัดการโพสต์ตามตารางเวลา</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">Canva</span>
+                            <span class="tech-tag">Content</span>
                         </div>
                         <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
                     </a>
 
                     <a href="#" class="project-card">
-                        <div class="project-icon"><i class="fas fa-comments"></i></div>
-                        <h3 class="project-title">Chat App</h3>
-                        <p class="project-desc">แอปพลิเคชันแชทโต้ตอบทันทีผ่าน WebSocket</p>
+                        <div class="project-icon"><i class="fas fa-globe"></i></div>
+                        <h3 class="project-title">Personal Web Portfolio</h3>
+                        <p class="project-desc">พัฒนาหน้าเว็บแนะนำตัวและรวบรวมประวัติการศึกษา ทักษะ และผลงาน</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">Socket.io</span>
-                            <span class="tech-tag">Express</span>
-                        </div>
-                        <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                     <a href="#" class="project-card">
-                        <div class="project-icon"><i class="fas fa-music"></i></div>
-                        <h3 class="project-title">Music Player</h3>
-                        <p class="project-desc">เว็บแอปฟังเพลง เชื่อมต่อ Spotify API</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">API</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">GitHub</span>
                         </div>
                         <div class="view-project">ดูรายละเอียด <i class="fas fa-arrow-right"></i></div>
                     </a>
@@ -759,23 +899,30 @@
                 <div class="graph-container" id="contribution-graph"></div>
             </div>
 
-            <!-- ส่วนช่องทางการติดต่อ (Contact) ย้ายมาอยู่ด้านล่างสุดตรงนี้ -->
+            <!-- ส่วนช่องทางการติดต่อ (Contact) -->
             <div class="glass-card">
                 <div class="section-header">
-                    <i class="fas fa-address-book"></i> ช่องทางการติดต่อ (Contact)
+                    <i class="fas fa-address-book"></i> ช่องทางการติดต่อ
                 </div>
                 <div class="contact-grid">
-                    <a href="mailto:jirapat.samat1807@gmail.com" class="contact-card-item">
+                    <a href="tel:0635801391" class="contact-card-item">
+                        <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-card-info">
+                            <h4>โทรศัพท์</h4>
+                            <p>063-580-1391</p>
+                        </div>
+                    </a>
+                    <a href="mailto:jirapat18747@gmail.com" class="contact-card-item">
                         <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-card-info">
                             <h4>Email</h4>
-                            <p>jirapat.samat1807@gmail.com</p>
+                            <p>jirapat18747@gmail.com</p>
                         </div>
                     </a>
                     <a href="https://github.com/jitapat-68040233109" target="_blank" class="contact-card-item">
                         <div class="contact-card-icon"><i class="fab fa-github"></i></div>
                         <div class="contact-card-info">
-                            <h4>GitHub Profile</h4>
+                            <h4>GitHub</h4>
                             <p>github.com/jitapat-68040233109</p>
                         </div>
                     </a>
@@ -786,7 +933,7 @@
 
     <script>
         // ===== TYPING EFFECT =====
-        const textToType = "กำลังศึกษาและพัฒนาทักษะด้าน Web Development 💻";
+        const textToType = "UI/UX Design (Figma) • Web Development (HTML, CSS, GitHub) 💻";
         const typeEl = document.getElementById('typing-text');
         let typeIdx = 0;
 
@@ -794,7 +941,7 @@
             if (typeIdx < textToType.length) {
                 typeEl.textContent += textToType.charAt(typeIdx);
                 typeIdx++;
-                setTimeout(typeWriter, 80);
+                setTimeout(typeWriter, 70);
             }
         }
         setTimeout(typeWriter, 500);
@@ -802,27 +949,26 @@
         // ===== CONTRIBUTION GRAPH GEN =====
         const graphContainer = document.getElementById('contribution-graph');
         const countDisplay = document.getElementById('contribution-count');
-        
+
         function generateGraph() {
-            const days = 160; 
+            const days = 160;
             let totalActivity = 0;
 
-            for(let i=0; i<days; i++) {
+            for (let i = 0; i < days; i++) {
                 const day = document.createElement('div');
                 day.className = 'graph-day';
-                
+
                 const rand = Math.random();
                 let level = 0;
-                if(rand > 0.85) level = 4;
-                else if(rand > 0.7) level = 3;
-                else if(rand > 0.5) level = 2;
-                else if(rand > 0.2) level = 1;
+                if (rand > 0.85) level = 4;
+                else if (rand > 0.7) level = 3;
+                else if (rand > 0.5) level = 2;
+                else if (rand > 0.2) level = 1;
 
                 day.classList.add(`level-${level}`);
-                if(level > 0) totalActivity++;
-                
+                if (level > 0) totalActivity++;
+
                 day.title = `${level} contributions`;
-                
                 graphContainer.appendChild(day);
             }
             countDisplay.innerText = `${totalActivity} Days`;
